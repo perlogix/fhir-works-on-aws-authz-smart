@@ -14,6 +14,7 @@ export const FHIR_USER_REGEX = /^(?<hostname>(http|https):\/\/([A-Za-z0-9\-\\.:%
 export const FHIR_RESOURCE_REGEX = /^((?<hostname>(http|https):\/\/([A-Za-z0-9\-\\.:%$_/])+)\/)?(?<resourceType>[A-Z][a-zA-Z]+)\/(?<id>[A-Za-z0-9\-.]+)$/;
 
 export function getFhirUser(fhirUserValue: string): FhirResource {
+
     const match = fhirUserValue.match(FHIR_USER_REGEX);
     if (match) {
         const { hostname, resourceType, id } = match.groups!;
@@ -22,6 +23,8 @@ export function getFhirUser(fhirUserValue: string): FhirResource {
     throw new UnauthorizedError("Requester's identity is in the incorrect format");
 }
 export function getFhirResource(resourceValue: string, defaultHostname: string): FhirResource {
+    console.log(`Resource Value: ${resourceValue}`)
+    console.log(`Default Host Name: ${defaultHostname}`)
     const match = resourceValue.match(FHIR_RESOURCE_REGEX);
     if (match) {
         const { resourceType, id } = match.groups!;

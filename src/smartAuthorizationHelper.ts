@@ -20,7 +20,7 @@ export function getFhirUser(fhirUserValue: string): FhirResource {
         const { hostname, resourceType, id } = match.groups!;
         return { hostname, resourceType, id };
     }
-    throw new UnauthorizedError("Requester's identity is in the incorrect format");
+    throw new UnauthorizedError(`Requester's identity is in the incorrect format fhirUserValue: ${fhirUserValue}`);
 }
 export function getFhirResource(resourceValue: string, defaultHostname: string): FhirResource {
     console.log(`Resource Value: ${resourceValue}`)

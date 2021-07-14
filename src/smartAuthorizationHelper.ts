@@ -31,7 +31,10 @@ export function getFhirResource(resourceValue: string, defaultHostname: string):
         const hostname = match.groups!.hostname ?? defaultHostname;
         return { hostname, resourceType, id };
     }
-    throw new UnauthorizedError('Resource is in the incorrect format');
+    throw new UnauthorizedError(`Resource is in the incorrect format
+    Resource Value: ${resourceValue}
+    Default Host Name: ${defaultHostname}
+    `);
 }
 
 const logger = getComponentLogger();
